@@ -14,35 +14,38 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { CurrencyRate, CurrencyTable } from "@/types";
+import { Link } from "react-router-dom";
+import Spinner from "@/components/Spinner";
 
 export default function Component() {
   const [currencyRates, setCurrencyRates] = useState<CurrencyRate[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchCurrencyRates = useCallback(async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(
-        "https://api.nbp.pl/api/exchangerates/tables/A/"
-      );
-      const data: CurrencyTable[] = await response.json();
-      setCurrencyRates(data[0].rates);
-    } catch (error) {
-      console.error("Error fetching currency rates:", error);
-      setError("Failed to load currency rates.");
-    } finally {
-      setLoading(false);
-    }
+  useEffect(() => {
+    const fetchCurrencyRates = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          "https://api.nbp.pl/api/exchangerates/tables/A/"
+        );
+        const data: CurrencyTable[] = await response.json();
+        setCurrencyRates(data[0].rates);
+      } catch (error) {
+        console.error("Error fetching currency rates:", error);
+        setError("Failed to load currency rates.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCurrencyRates();
   }, []);
 
-  useEffect(() => {
-    fetchCurrencyRates();
-  }, [fetchCurrencyRates]);
-
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {
@@ -74,6 +77,13 @@ export default function Component() {
                   <TableCell>{rate.code}</TableCell>
                   <TableCell className="font-medium">
                     {rate.mid.toFixed(4)}
+                  </TableCell>
+                  <TableCell>
+                    <Link to={`/currency/${rate.code}`}>
+                      <Button variant="outline" size="sm">
+                        View
+                      </Button>
+                    </Link>
                   </TableCell>
                 </TableRow>
               ))}
