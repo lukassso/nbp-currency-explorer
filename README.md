@@ -74,6 +74,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Deployment Status
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/36fc89c3-8170-4f88-985b-d2b60bf46c3f/deploy-status)](https://app.netlify.com/sites/zetkolek/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e94f903a-9efc-48ba-a4d9-79cc331eaa70/deploy-status)](https://app.netlify.com/sites/nbp-currency-explorer/deploys)
 
 <p align="center" style="padding-top: 50px;">Made with ❤️ for programming</p>
