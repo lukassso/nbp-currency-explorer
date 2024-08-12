@@ -5,7 +5,9 @@ import Spinner from "@/components/Spinner";
 
 export default function CurrencyDetailsPage() {
   const { code } = useParams<{ code: string }>();
-  const [currencyData, setCurrencyData] = useState<CurrencyDetails | null>(null);
+  const [currencyData, setCurrencyData] = useState<CurrencyDetails | null>(
+    null
+  );
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -36,7 +38,9 @@ export default function CurrencyDetailsPage() {
 
   return (
     <section className="w-full max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16">
-      <h1 className="text-3xl font-bold">Details for {currencyData?.currency}</h1>
+      <h1 className="text-3xl font-bold">
+        Details for {currencyData?.currency}
+      </h1>
       <p>Code: {currencyData?.code}</p>
       <h2 className="text-2xl font-bold mt-4">Rates</h2>
       <ul>
