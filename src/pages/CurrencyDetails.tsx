@@ -16,7 +16,7 @@ export default function CurrencyDetailsPage() {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://api.nbp.pl/api/exchangerates/rates/A/${code}/`
+          `https://api.nbp.pl/api/exchangerates/rates/A/${code}/last/30/`
         );
         const data: CurrencyDetails = await response.json();
         setCurrencyData(data);
