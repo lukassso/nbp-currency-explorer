@@ -25,3 +25,12 @@ export interface CurrencyDetails {
   code: string;
   rates: CurrencyDetailRate[];
 }
+
+export interface ChartDataPoint {
+  effectiveDate: string;
+  mid: number;
+}
+
+export interface ChartComponentProps {
+  data: ChartDataPoint[];
+}
