@@ -7,39 +7,35 @@ const ChartComponent = ({ data }: ChartComponentProps) => {
   const chartInstanceRef = useRef<Chart | null>(null);
 
   useEffect(() => {
-    if (chartRef.current) {
-      // Destroy the previous chart instance if it exists
-      if (chartInstanceRef.current) {
-        chartInstanceRef.current.destroy();
-      }
-
-      // Create a new chart instance
-      chartInstanceRef.current = new Chart(chartRef.current, {
-        type: "line",
-        data: {
-          labels: data.map((entry) => entry.effectiveDate),
-          datasets: [
-            {
-              label: "Exchange Rate",
-              data: data.map((entry) => entry.mid),
-              borderColor: "rgba(75,192,192,1)",
-              backgroundColor: "rgba(75,192,192,0.2)",
-              fill: false,
-              tension: 0.1,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false, // Allow the chart to resize properly
-        },
-      });
+    if (!chartRef.current) return;
+    // Destroy the previous chart instance if it exists
+    if (chartInstanceRef.current) {
+      chartInstanceRef.current.destroy();
     }
+    // Create a new chart instance
+    chartInstanceRef.current = new Chart(chartRef.current, {
+      type: "line",
+      data: {
+        labels: data.map((entry) => entry.effectiveDate),
+        datasets: [
+          {
+            label: "Exchange Rate",
+            data: data.map((entry) => entry.mid),
+            borderColor: "rgba(75,192,192,1)",
+            backgroundColor: "rgba(75,192,192,0.2)",
+            fill: false,
+            tension: 0.1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false, // Allow the chart to resize properly
+      },
+    });
 
     return () => {
-      if (chartInstanceRef.current) {
-        chartInstanceRef.current.destroy();
-      }
+      chartInstanceRef.current?.destroy();
     };
   }, [data]);
 
