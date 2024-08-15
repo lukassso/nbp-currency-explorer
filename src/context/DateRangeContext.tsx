@@ -1,6 +1,18 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { subDays } from "date-fns";
-import { DateRange, DateRangeContextProps } from "@/types";
+import { DateRange } from "@/types";
+
+export interface DateRangeContextProps {
+  dateRange: DateRange | undefined;
+  setDateRange: Dispatch<SetStateAction<DateRange | undefined>>;
+}
 
 const DateRangeContext = createContext<DateRangeContextProps | undefined>(
   undefined
@@ -16,7 +28,7 @@ export const useDateRange = () => {
 
 export const DateRangeProvider = ({ children }: { children: ReactNode }) => {
   const today = new Date();
-  const [dateRange, setDateRange] = useState<DateRange>({
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: subDays(today, 30),
     to: today,
   });

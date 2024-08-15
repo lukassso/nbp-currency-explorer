@@ -4,6 +4,10 @@ export interface CurrencyRate {
   mid: number;
 }
 
+export interface CurrencyTable {
+  rates: CurrencyRate[];
+}
+
 export interface CurrencyDetailRate {
   no: string;
   effectiveDate: string;
@@ -29,9 +33,4 @@ export interface ChartComponentProps {
 export interface DateRange {
   from: Date | undefined;
   to?: Date | undefined;
-}
-
-export interface DateRangeContextProps {
-  dateRange: DateRange | undefined;
-  setDateRange: (range: DateRange | undefined) => void;
 }
