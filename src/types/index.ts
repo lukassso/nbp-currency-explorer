@@ -1,5 +1,3 @@
-// src/types/types.ts
-
 export interface CurrencyRate {
   currency: string;
   code: string;
@@ -7,9 +5,6 @@ export interface CurrencyRate {
 }
 
 export interface CurrencyTable {
-  table: string;
-  no: string;
-  effectiveDate: string;
   rates: CurrencyRate[];
 }
 
@@ -24,4 +19,18 @@ export interface CurrencyDetails {
   currency: string;
   code: string;
   rates: CurrencyDetailRate[];
+}
+
+export interface ChartDataPoint {
+  effectiveDate: string;
+  mid: number;
+}
+
+export interface ChartComponentProps {
+  data: ChartDataPoint[];
+}
+
+export interface DateRange {
+  from: Date | undefined;
+  to?: Date | undefined;
 }
