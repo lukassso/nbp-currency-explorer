@@ -69,7 +69,7 @@ const CurrencyConverter = () => {
 
     setTimeout(() => {
       setIsRotating(false);
-    }, 500); 
+    }, 500);
   }, [isSourcePLN]);
 
   const convertedAmount = useMemo(() => {
@@ -97,8 +97,8 @@ const CurrencyConverter = () => {
             value={amount}
             onChange={handleAmountChange}
             className="rounded-r-none min-w-[80px]"
+            aria-label="Amount"
           />
-
           {isSourcePLN ? (
             <>
               <Select value="PLN" disabled>

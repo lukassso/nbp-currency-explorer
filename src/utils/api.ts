@@ -3,6 +3,13 @@ export const fetchCurrencyRates = async () => {
   if (!response.ok) {
     throw new Error("Failed to fetch currency rates");
   }
-  const data = await response.json();
-  return data[0].rates;
+  try {
+    const data = await response.json();
+    if (!data || !data[0] || !data[0].rates) {
+      throw new Error("Invalid data structure");
+    }
+    return data[0].rates;
+  } catch (error) {
+    throw new Error("Failed to parse currency rates");
+  }
 };
