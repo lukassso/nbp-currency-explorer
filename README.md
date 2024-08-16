@@ -17,7 +17,6 @@ NBP Currency Explorer is a web application that displays current exchange rates 
 - **Vite**: Fast development build tool for modern web projects.
 - **Shadcn/UI**: UI components built on top of Tailwind CSS.
 - **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
-- **Axios**: Promise-based HTTP client for the browser and Node.js.
 - **React Router**: Declarative routing for React applications.
 - **Chart.js**: For creating charts to display currency data.
 
@@ -28,8 +27,7 @@ NBP Currency Explorer is a web application that displays current exchange rates 
 
 ### Testing
 
-- **Jest**: Testing framework for unit and integration tests.
-- **React Testing Library**: For testing React components.
+Testing has not been implemented yet. We plan to use **Jest**, **React Testing Library**, and **Playwright** for comprehensive testing, including unit, integration, and end-to-end tests. Contributions to set up and implement testing are welcome!
 
 ## Getting Started
 
