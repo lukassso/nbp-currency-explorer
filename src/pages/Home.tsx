@@ -15,24 +15,23 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CurrencyRate, CurrencyTable } from "@/types";
+import { CurrencyRate } from "@/types";
 import { Link } from "react-router-dom";
 import Spinner from "@/components/Spinner";
+import CurrencyConverter from "@/components/CurrencyConverter";
+import { fetchCurrencyRates } from "@/utils/api";
 
-export default function Component() {
+export default function HomePage() {
   const [currencyRates, setCurrencyRates] = useState<CurrencyRate[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchCurrencyRates = async () => {
+    const fetchRates = async () => {
       try {
         setLoading(true);
-        const response = await fetch(
-          "https://api.nbp.pl/api/exchangerates/tables/A/"
-        );
-        const data: CurrencyTable[] = await response.json();
-        setCurrencyRates(data[0].rates);
+        const rates = await fetchCurrencyRates();
+        setCurrencyRates(rates);
       } catch (error) {
         console.error("Error fetching currency rates:", error);
         setError("Failed to load currency rates.");
@@ -41,7 +40,7 @@ export default function Component() {
       }
     };
 
-    fetchCurrencyRates();
+    fetchRates();
   }, []);
 
   if (loading) {
@@ -54,6 +53,7 @@ export default function Component() {
 
   return (
     <section className="w-full max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <CurrencyConverter />
       <Card>
         <CardHeader>
           <CardTitle>Currency Exchange Rates</CardTitle>
