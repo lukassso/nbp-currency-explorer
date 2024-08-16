@@ -25,6 +25,7 @@ const CurrencyConverter = () => {
   const [isSourcePLN, setIsSourcePLN] = useState<boolean>(true);
   const [variableCurrency, setVariableCurrency] = useState<string>("USD");
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates>({});
+  const [isRotating, setIsRotating] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchExchangeRates = async () => {
@@ -63,7 +64,12 @@ const CurrencyConverter = () => {
   };
 
   const handleCurrencySwap = useCallback(() => {
+    setIsRotating(true);
     setIsSourcePLN(!isSourcePLN);
+
+    setTimeout(() => {
+      setIsRotating(false);
+    }, 500); 
   }, [isSourcePLN]);
 
   const convertedAmount = useMemo(() => {
@@ -101,9 +107,9 @@ const CurrencyConverter = () => {
                 </SelectTrigger>
               </Select>
               <Button
-                variant="ghost"
+                variant="link"
                 onClick={handleCurrencySwap}
-                className="transition-transform duration-300 ease-in-out hover:rotate-360"
+                className={isRotating ? "rotate-180" : ""}
               >
                 <ArrowLeftRightIcon className="h-4 w-4" />
               </Button>
@@ -140,7 +146,11 @@ const CurrencyConverter = () => {
                   ))}
                 </SelectContent>
               </Select>
-              <Button variant="ghost" onClick={handleCurrencySwap}>
+              <Button
+                variant="link"
+                onClick={handleCurrencySwap}
+                className={isRotating ? "rotate-180" : ""}
+              >
                 <ArrowLeftRightIcon className="h-4 w-4" />
               </Button>
               <Select value="PLN" disabled>
@@ -161,4 +171,5 @@ const CurrencyConverter = () => {
     </Card>
   );
 };
+
 export default CurrencyConverter;
