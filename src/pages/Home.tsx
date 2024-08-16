@@ -18,8 +18,9 @@ import { Button } from "@/components/ui/button";
 import { CurrencyRate, CurrencyTable } from "@/types";
 import { Link } from "react-router-dom";
 import Spinner from "@/components/Spinner";
+import CurrencyConverter from "@/components/CurrencyConverter";
 
-export default function Component() {
+export default function HomePage() {
   const [currencyRates, setCurrencyRates] = useState<CurrencyRate[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -54,6 +55,7 @@ export default function Component() {
 
   return (
     <section className="w-full max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <CurrencyConverter />
       <Card>
         <CardHeader>
           <CardTitle>Currency Exchange Rates</CardTitle>

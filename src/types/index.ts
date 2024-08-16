@@ -34,3 +34,7 @@ export interface DateRange {
   from: Date | undefined;
   to?: Date | undefined;
 }
+
+export interface ExchangeRates {
+  [key: string]: number;
+}
