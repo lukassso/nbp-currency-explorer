@@ -75,12 +75,13 @@ const CurrencyConverter = () => {
   const convertedAmount = useMemo(() => {
     if (isSourcePLN) {
       const targetRate = exchangeRates[variableCurrency] || 1;
-      return amount * targetRate;
+      return amount / targetRate;
     } else {
       const sourceRate = exchangeRates[variableCurrency] || 1;
-      return amount / sourceRate;
+      return amount * sourceRate;
     }
   }, [amount, isSourcePLN, variableCurrency, exchangeRates]);
+  
 
   return (
     <Card className="w-full max-w-lg mx-auto mb-6 ml-0 overflow-hidden">
