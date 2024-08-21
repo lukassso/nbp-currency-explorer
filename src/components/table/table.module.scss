@@ -1,0 +1,40 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  text-align: left;
+  background-color: hsl(var(--card));
+  color: hsl(var(--foreground));
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.row {
+  border-bottom: 1px solid hsl(var(--border));
+
+  &:hover {
+      background-color: hsl(var(--muted) / 0.5);
+  }
+}
+
+.cell, .header {
+  padding: 16px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.header {
+  background-color: transparent;
+  color: hsl(var(--foreground)/0.5);
+  font-weight: bold;
+  text-align: left;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.boldText {
+  font-weight: bold;
+}

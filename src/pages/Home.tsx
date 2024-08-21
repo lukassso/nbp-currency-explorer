@@ -1,12 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from "@/components/ui/table";
+import { Table, TableHeader, TableRow, TableCell } from "@/components/table";
 import {
   Card,
   CardHeader,
@@ -20,6 +13,7 @@ import { Link } from "react-router-dom";
 import Spinner from "@/components/Spinner";
 import CurrencyConverter from "@/components/CurrencyConverter";
 import { fetchCurrencyRates } from "@/utils/api";
+import styles from "@/components/table/Table.module.scss";
 
 export default function HomePage() {
   const [currencyRates, setCurrencyRates] = useState<CurrencyRate[]>([]);
@@ -63,19 +57,20 @@ export default function HomePage() {
         </CardHeader>
         <CardContent>
           <Table>
-            <TableHeader>
+            <thead>
               <TableRow>
-                <TableHead>Currency</TableHead>
-                <TableHead>Code</TableHead>
-                <TableHead>Rate</TableHead>
+                <TableHeader>Currency</TableHeader>
+                <TableHeader>Code</TableHeader>
+                <TableHeader>Rate</TableHeader>
+                <TableHeader>Action</TableHeader>
               </TableRow>
-            </TableHeader>
-            <TableBody>
+            </thead>
+            <tbody>
               {currencyRates.map((rate) => (
                 <TableRow key={rate.code}>
                   <TableCell>{rate.currency}</TableCell>
                   <TableCell>{rate.code}</TableCell>
-                  <TableCell className="font-medium">
+                  <TableCell className={styles.boldText}>
                     {rate.mid.toFixed(4)}
                   </TableCell>
                   <TableCell>
@@ -87,7 +82,7 @@ export default function HomePage() {
                   </TableCell>
                 </TableRow>
               ))}
-            </TableBody>
+            </tbody>
           </Table>
         </CardContent>
       </Card>
