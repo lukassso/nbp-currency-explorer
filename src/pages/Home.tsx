@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import Spinner from "@/components/Spinner";
 import CurrencyConverter from "@/components/CurrencyConverter";
 import { fetchCurrencyRates } from "@/utils/api";
-import styles from "@/components/table/Table.module.scss";
+import styles from "@/components/table/table.module.scss";
 
 export default function HomePage() {
   const [currencyRates, setCurrencyRates] = useState<CurrencyRate[]>([]);

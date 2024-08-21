@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Table.module.scss';
+import styles from './table.module.scss';
 import clsx from 'clsx';
 import { TableCellProps } from '@/types';
 
