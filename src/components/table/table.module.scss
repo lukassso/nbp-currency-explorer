@@ -1,0 +1,90 @@
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table-wrapper {
+  display: block;
+}
+
+.card {
+  margin-bottom: 1rem;
+}
+
+.cardContent {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid hsl(var(--border));
+  overflow: hidden;
+}
+
+.cardRow:last-child {
+  border-bottom: none;
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
+
+.label {
+  font-weight: bold;
+  color: hsl(var(--foreground));
+}
+
+.boldText {
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .card {
+      display: none;
+  }
+
+  .table-wrapper {
+      display: block;
+  }
+
+  .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.875rem;
+      line-height: 1rem;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      text-align: left;
+      background-color: hsl(var(--card));
+      color: hsl(var(--foreground));
+      border-radius: 0.5rem;
+  }
+
+  .row {
+      border-bottom: 1px solid hsl(var(--border));
+
+      &:hover {
+          background-color: hsl(var(--muted) / 0.5);
+      }
+  }
+
+  .cell, .header {
+      padding: 1rem;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+  }
+
+  .header {
+      background-color: transparent;
+      color: hsl(var(--foreground));
+      font-weight: bold;
+      text-align: left;
+  }
+}

@@ -103,7 +103,7 @@ const CurrencyConverter = () => {
           {isSourcePLN ? (
             <>
               <Select value="PLN" disabled>
-                <SelectTrigger className="rounded-none min-w-[100px]">
+                <SelectTrigger className="rounded-none min-w-[80px]">
                   <SelectValue placeholder="PLN">PLN</SelectValue>
                 </SelectTrigger>
               </Select>
@@ -118,7 +118,7 @@ const CurrencyConverter = () => {
                 value={variableCurrency}
                 onValueChange={handleVariableCurrencyChange}
               >
-                <SelectTrigger className="rounded-l-none min-w-[100px]">
+                <SelectTrigger className="rounded-l-none min-w-[80px]">
                   <SelectValue placeholder="To" />
                 </SelectTrigger>
                 <SelectContent>
