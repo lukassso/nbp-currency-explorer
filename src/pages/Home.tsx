@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Table, TableHeader, TableRow, TableCell } from "@/components/table";
 import {
   Card,
   CardHeader,
@@ -7,14 +6,14 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { CurrencyRate } from "@/types";
-import { Link } from "react-router-dom";
 import Spinner from "@/components/Spinner";
 import CurrencyConverter from "@/components/CurrencyConverter";
 import { fetchCurrencyRates } from "@/utils/api";
 import styles from "@/components/table/table.module.scss";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import CurrencyTable from "@/components/table/CurrencyTable";
+import CurrencyCards from "@/components/currency-cards/CurrencyCards";
 
 export default function HomePage() {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -61,64 +60,9 @@ export default function HomePage() {
         <CardContent>
           <div className={styles.tableContainer}>
             {!isDesktop ? (
-              currencyRates.map((rate) => (
-                <div key={rate.code} className={styles.card}>
-                  <Card>
-                    <div className={styles.cardContent}>
-                      <div className={styles.cardRow}>
-                        <span className={styles.label}>Currency:</span>
-                        <span>{rate.currency}</span>
-                      </div>
-                      <div className={styles.cardRow}>
-                        <span className={styles.label}>Code:</span>
-                        <span>{rate.code}</span>
-                      </div>
-                      <div className={styles.cardRow}>
-                        <span className={styles.label}>Rate:</span>
-                        <span className={styles.boldText}>
-                          {rate.mid.toFixed(4)}
-                        </span>
-                      </div>
-                      <div className={styles.buttonRow}>
-                        <Link to={`/currency/${rate.code}`}>
-                          <Button variant="outline" size="lg">
-                            View
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-                  </Card>
-                </div>
-              ))
+              <CurrencyCards rates={currencyRates} />
             ) : (
-              <Table>
-                <thead>
-                  <TableRow>
-                    <TableHeader>Currency</TableHeader>
-                    <TableHeader>Code</TableHeader>
-                    <TableHeader>Rate</TableHeader>
-                    <TableHeader>Action</TableHeader>
-                  </TableRow>
-                </thead>
-                <tbody>
-                  {currencyRates.map((rate) => (
-                    <TableRow key={rate.code}>
-                      <TableCell>{rate.currency}</TableCell>
-                      <TableCell>{rate.code}</TableCell>
-                      <TableCell className={styles.boldText}>
-                        {rate.mid.toFixed(4)}
-                      </TableCell>
-                      <TableCell>
-                        <Link to={`/currency/${rate.code}`}>
-                          <Button variant="outline" size="sm">
-                            View
-                          </Button>
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </tbody>
-              </Table>
+              <CurrencyTable rates={currencyRates} />
             )}
           </div>
         </CardContent>

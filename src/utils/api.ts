@@ -10,6 +10,7 @@ export const fetchCurrencyRates = async () => {
     }
     return data[0].rates;
   } catch (error) {
+    console.error("Error parsing currency rates:", error);
     throw new Error("Failed to parse currency rates");
   }
 };

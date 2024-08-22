@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import { CurrencyDetails } from "@/types";
@@ -16,7 +16,7 @@ export default function CurrencyDetailsPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchCurrencyDetails = async () => {
+  const fetchCurrencyDetails = useCallback(async () => {
     if (!dateRange?.from || !dateRange?.to) return;
 
     try {
@@ -38,11 +38,11 @@ export default function CurrencyDetailsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [code, dateRange]);
 
   useEffect(() => {
     fetchCurrencyDetails();
-  }, [code, dateRange]);
+  }, [fetchCurrencyDetails]);
 
   return (
     <section className="w-full max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16">
