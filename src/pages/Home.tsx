@@ -79,9 +79,9 @@ export default function HomePage() {
                           {rate.mid.toFixed(4)}
                         </span>
                       </div>
-                      <div className={styles.cardRow}>
+                      <div className={styles.buttonRow}>
                         <Link to={`/currency/${rate.code}`}>
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="lg">
                             View
                           </Button>
                         </Link>
